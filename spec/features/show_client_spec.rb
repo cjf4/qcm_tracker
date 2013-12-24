@@ -8,7 +8,6 @@ describe "Viewing a Client's info page" do
 
 		expect(page).to have_text(client.username)
 		expect(page).to have_text(client.company)
-		expect(page).to have_text(client.email)
-
+		
 	end
 end
