@@ -1,7 +1,9 @@
 def client_attributes(overrides = {})
 	{
-		username: "JoeSchmoe",
-		company: "Super Schmoe Mo",
-		email: "joeys@superschmoemo.com"
+		username: "JoeSchmoe17",
+		company: "The Pumpery",
+		email: "joeys@pumpery.com",
+		password: "foobar",
+		password_confirmation: "foobar"
 	}.merge(overrides)
 end 
