@@ -27,5 +27,6 @@ module QcmTracker
 
     #added this because of deprecated rspec tests, review if it causes depedency issues
     config.i18n.enforce_available_locales = true
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end

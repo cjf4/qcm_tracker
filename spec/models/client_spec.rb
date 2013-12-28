@@ -26,22 +26,6 @@ describe "A client" do
 		end
 	end
 
-	describe "when username format is invalid" do
-		client = Client.new(username: "Frank Boy")
-		it "should not be valid" do
-			expect(client.valid?).to be_false
-		end
-	end
-
-	describe "when username is already taken" do
-		before do
-			client_with_same_username = @client.dup
-			client_with_same_username.save
-		end
-
-		it { should_not be_valid}
-	end
-
 	describe "when email is not present" do
 		before { @client.email = "" }
 		it { should_not be_valid }
@@ -50,7 +34,7 @@ describe "A client" do
 	describe "when email format is invalid" do
 		it "should not be valid" do
 			addresses = %w[user@foo,com user_at_foo.org example.user@foo.
-                     foo@bar_baz.com foo@bar+baz.com]
+                     foo@bar_baz.com foo@bar+baz.com foo@bar..com]
       addresses.each do |invalid_address|
       	@client.email = invalid_address
       	expect(@client).not_to be_valid
@@ -79,6 +63,11 @@ describe "A client" do
   describe "when password doesn't match confirmation" do
   	before { @client.password_confirmation = "somethingelse"}
   	it { should_not be_valid	}
+  end
+
+  describe "with password that is too short" do
+  	before { @client.password = @client.password_confirmation = "short"}
+  	it { should_not be_valid}
   end
 
   describe "return value of authenticate method" do
