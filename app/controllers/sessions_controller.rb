@@ -3,8 +3,8 @@ class SessionsController < ApplicationController
 	end	
 
 	def create
-		client = Client.find_by(email:params[:session][:email].downcase)
-		if client && client.authenticate(params[:session][:password])
+		client = Client.find_by(email:params[:email].downcase)
+		if client && client.authenticate(params[:password])
 			sign_in client
 			redirect_to client
 		else
