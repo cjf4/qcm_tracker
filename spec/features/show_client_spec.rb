@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Viewing a Client's info page" do
 	it "shows the Client's info" do
-		client = Client.create(client_attributes)
+		client = FactoryGirl.create(:client)
 
 		visit client_url(client)
 

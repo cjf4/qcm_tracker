@@ -19,4 +19,10 @@ module SessionsHelper
   def signed_in?
   	!current_client.nil?
   end
+
+  def sign_out
+  	current_client.update_attribute(:remember_token, 
+  																	Client.encrypt(Client.new_remember_token))
+  	self.current_client = nil
+  end
 end
