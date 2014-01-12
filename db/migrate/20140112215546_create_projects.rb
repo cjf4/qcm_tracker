@@ -8,6 +8,7 @@ class CreateProjects < ActiveRecord::Migration
       t.float :sales
       t.float :web_design
       t.float :creative_design
+      t.references :client, index: true
 
       t.timestamps
     end
