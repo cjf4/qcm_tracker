@@ -3,14 +3,14 @@
 		<div class="container">
 			<nav>
 				<ul class="nav pull-right">
-					<li><%= link_to "QCM Home", "http://qcmny.com/" %>
+					
 					<% if signed_in? %>
-						<li><%= link_to "Home", '#' %></li>
-						<li><%= link_to "Projects", '#' %></li>
-						<li><%= link_to "Account", '#' %></li>
+						<li><%= link_to "Projects", current_client %></li>
+						<li><%= link_to "Account", edit_client_path(current_client) %></li>
+						<li><%= link_to "QCM Home Page", "http://qcmny.com/" %>
 						<li><%= link_to "Sign Out", signout_path, method: "delete" %></li>
 					<% else %>
-						<li><%= link_to "Learn More", '#'%></li>
+						<li><%= link_to "QCM Home Page", "http://qcmny.com/" %>
 					<% end %>
 				</ul>
 			</nav>

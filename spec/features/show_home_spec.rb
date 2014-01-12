@@ -17,6 +17,6 @@ describe "Viewing the home page" do
   it "should have a link to QCMNY home page" do
   	visit "/"
 
-  	expect(page).to have_link("QCM Home")
+  	expect(page).to have_link("QCM Home Page")
   end
 end

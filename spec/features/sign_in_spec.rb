@@ -32,10 +32,38 @@ describe 'Authentication' do
         fill_in "Password", with: client.password
         click_button "Sign in"
       end
+
+      it { should have_title(client.company) }
+      it { should have_link('Projects',    href: client_path(client)) }
+      it { should have_link('Account',     href: edit_client_path(client)) }
+      it { should have_link('Sign Out',    href: signout_path) }
+      it { should_not have_link('Sign in', href: signin_path) }
       
       describe "followed by signout" do
         before { click_link "Sign Out" }
         it { should have_link('Sign in to your account') }
+      end
+
+      describe "visiting the signin url" do
+
+        before { visit new_session_path }
+        it "should redirect back to the client's home page" do
+          expect(page).to have_content("Viewing")
+        end
+      end
+
+      describe "navigating to a different page" do
+        
+        before { click_link "Account" }
+
+        describe "clicking the Home Button" do
+
+          before { click_link "Projects" }
+
+          it "should send the client to the client dashboard (show)" do
+            expect(page).to have_content("Viewing")
+          end
+        end
       end
     end
   end

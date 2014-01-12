@@ -16,6 +16,10 @@ module SessionsHelper
     @current_client ||= Client.find_by(remember_token: remember_token)
   end
 
+  def current_client?(client)
+    client == current_client
+  end
+
   def signed_in?
   	!current_client.nil?
   end
@@ -24,5 +28,20 @@ module SessionsHelper
   	current_client.update_attribute(:remember_token, 
   																	Client.encrypt(Client.new_remember_token))
   	self.current_client = nil
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    session.delete(:return_to)
+  end
+
+  def store_location
+    session[:return_to] = request.url if request.get?
+  end
+
+  def signed_in_homepage
+    if signed_in?
+      redirect_to current_client
+    end
   end
 end

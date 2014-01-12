@@ -1,12 +1,13 @@
 class SessionsController < ApplicationController
 	def new
+		signed_in_homepage
 	end	
 
 	def create
 		client = Client.find_by(email:params[:email].downcase)
 		if client && client.authenticate(params[:password])
 			sign_in client
-			redirect_to client
+			redirect_back_or client
 		else
 			#flash.now makes sure the flash isn't persistent
 			flash.now[:error] = 'Invalid email/password combination'

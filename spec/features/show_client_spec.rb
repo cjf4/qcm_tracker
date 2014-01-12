@@ -10,4 +10,8 @@ describe "Viewing a Client's info page" do
 		expect(page).to have_text(client.company)
 		
 	end
+
+	describe "as a different client" do
+
+	end
 end

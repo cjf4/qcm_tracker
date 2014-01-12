@@ -1,5 +1,5 @@
 class Client < ActiveRecord::Base
-	before_save { self.email = email.downcase }
+	#before_save { self.email = email.downcase }
 	before_create :create_remember_token
 	validates :username, presence: true, length: { in: 6..40 }
 	validates :company, presence: true
