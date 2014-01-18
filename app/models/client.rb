@@ -1,8 +1,9 @@
 class Client < ActiveRecord::Base
-	#before_save { self.email = email.downcase }
+	before_save { self.email = email.downcase }
 	before_create :create_remember_token
 	validates :username, presence: true, length: { in: 6..40 }
 	validates :company, presence: true
+	has_many :projects
 	
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
